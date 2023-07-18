@@ -44,7 +44,7 @@ class FormDataCeated {
   senDataInBot(inputsArray) {
     const inputsArrayValue = inputsArray.map((input) => input.value);
     inputsArray.map((input) => input.value = '');
-    this.wepApp.sendData(inputsArrayValue);
+    this.wepApp.sendData(JSON.stringify(inputsArrayValue));
   }
 }
 
