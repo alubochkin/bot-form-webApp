@@ -12,7 +12,7 @@ class FormDataCeated {
   async createForm() {
     this.form = `
       <form id="form">
-        <h3>V-2</h3>
+        <h3>V-3</h3>
         <input name="inp1" type="text" placeholder="text" />
         <input name="inp2" type="text" placeholder="text" />
         <input name="inp3" type="text" placeholder="text" />
@@ -22,6 +22,7 @@ class FormDataCeated {
     `
     this.root.insertAdjacentHTML('beforeend', this.form);
     this.errorsElem = this.root.querySelector('.errors');
+    this.root.querySelector('h3').innerText = window.Telegram?.WebApp.sendData.toString();
     return true;
   }
 
@@ -32,7 +33,7 @@ class FormDataCeated {
   addListenerForm() {
     this.root.querySelector('form').addEventListener('submit', (event) => {
       event.preventDefault();
-      this.wepApp.sendData('data');
+      window.Telegram?.WebApp.sendData('data');
       const inputs = Array.from(event.target.querySelectorAll('input'));
       if (inputs.every((inp) => inp.value)) {
         this.senDataInBot(inputs);
