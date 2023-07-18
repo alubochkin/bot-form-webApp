@@ -3,7 +3,6 @@ class FormDataCeated {
 
   init() {
     this.root = document.getElementById('root');
-    this.wepApp = window.Telegram.WebApp;
     if (this.root) {
       this.createForm()
         .then(() => this.addListenerForm())
@@ -13,6 +12,7 @@ class FormDataCeated {
   async createForm() {
     this.form = `
       <form id="form">
+        <h3>V-2</h3>
         <input name="inp1" type="text" placeholder="text" />
         <input name="inp2" type="text" placeholder="text" />
         <input name="inp3" type="text" placeholder="text" />
@@ -47,7 +47,7 @@ class FormDataCeated {
     inputsArray.map((input) => input.value = '');
     const data = JSON.stringify(inputsArrayValue);
     console.log(data);
-    this.wepApp.sendData(data);
+    window.Telegram?.WebApp.sendData(data);
   }
 }
 
