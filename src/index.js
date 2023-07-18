@@ -3,6 +3,7 @@ class FormDataCeated {
 
   init() {
     this.root = document.getElementById('root');
+    this.wepApp = window.Telegram.WebApp;
     if (this.root) {
       this.createForm()
         .then(() => this.addListenerForm())
@@ -20,7 +21,7 @@ class FormDataCeated {
       </div>
     `
     this.root.insertAdjacentHTML('beforeend', this.form);
-    this.errorsElem = this.root.querySelector('.errors')
+    this.errorsElem = this.root.querySelector('.errors');
     return true;
   }
 
@@ -33,12 +34,17 @@ class FormDataCeated {
       event.preventDefault();
       const inputs = Array.from(event.target.querySelectorAll('input'));
       if (inputs.every((inp) => inp.value)) {
-        this.dataForm = inputs.map((input) => input.value);
+        this.senDataInBot(inputs);
       } else {
         this.addError('Вы не все поля заполнили');
       }
       
     })
+  }
+  senDataInBot(inputsArray) {
+    const inputsArrayValue = inputsArray.map((input) => input.value);
+    inputsArray.map((input) => input.value = '');
+    this.wepApp.sendData(inputsArrayValue);
   }
 }
 
