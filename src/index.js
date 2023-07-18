@@ -2,7 +2,7 @@ class FormDataCeated {
   dataForm = [];
 
   init() {
-    this.root = document.getElementById('form');
+    this.root = document.getElementById('root');
     if (this.root) {
       this.createForm()
         .then(() => this.addListenerForm())
