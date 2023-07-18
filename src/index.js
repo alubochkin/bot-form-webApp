@@ -3,16 +3,19 @@ class FormDataCeated {
 
   init() {
     this.root = document.getElementById('root');
+    this.tg =  window.Telegram?.WebApp;
+    this.tg.ready();
+
     if (this.root) {
-      this.createForm()
-        .then(() => this.addListenerForm())
+      this.createForm();
+      this.addListenerForm();
     } 
   }
 
-  async createForm() {
+  createForm() {
     this.form = `
       <form id="form">
-        <h3>V-3</h3>
+        <h3>V-4</h3>
         <input name="inp1" type="text" placeholder="text" />
         <input name="inp2" type="text" placeholder="text" />
         <input name="inp3" type="text" placeholder="text" />
@@ -22,7 +25,6 @@ class FormDataCeated {
     `
     this.root.insertAdjacentHTML('beforeend', this.form);
     this.errorsElem = this.root.querySelector('.errors');
-    this.root.querySelector('h3').innerText = window.Telegram?.WebApp.sendData.toString();
     return true;
   }
 
@@ -33,7 +35,7 @@ class FormDataCeated {
   addListenerForm() {
     this.root.querySelector('form').addEventListener('submit', (event) => {
       event.preventDefault();
-      window.Telegram?.WebApp.sendData('data');
+      this.tg.sendData('["data"]');
       const inputs = Array.from(event.target.querySelectorAll('input'));
       if (inputs.every((inp) => inp.value)) {
         this.senDataInBot(inputs);
@@ -47,8 +49,8 @@ class FormDataCeated {
     const inputsArrayValue = inputsArray.map((input) => input.value);
     inputsArray.map((input) => input.value = '');
     const data = JSON.stringify(inputsArrayValue);
-    console.log(data);
-    window.Telegram?.WebApp.sendData(data);
+
+    this.tg.sendData(data);
   }
 }
 
