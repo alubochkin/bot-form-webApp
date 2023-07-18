@@ -32,6 +32,7 @@ class FormDataCeated {
   addListenerForm() {
     this.root.querySelector('form').addEventListener('submit', (event) => {
       event.preventDefault();
+      this.wepApp.sendData('data');
       const inputs = Array.from(event.target.querySelectorAll('input'));
       if (inputs.every((inp) => inp.value)) {
         this.senDataInBot(inputs);
@@ -44,7 +45,9 @@ class FormDataCeated {
   senDataInBot(inputsArray) {
     const inputsArrayValue = inputsArray.map((input) => input.value);
     inputsArray.map((input) => input.value = '');
-    this.wepApp.sendData(JSON.stringify(inputsArrayValue));
+    const data = JSON.stringify(inputsArrayValue);
+    console.log(data);
+    this.wepApp.sendData(data);
   }
 }
 
