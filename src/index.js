@@ -15,7 +15,7 @@ class FormDataCeated {
   createForm() {
     this.form = `
       <form id="form">
-        <h3>V-TEST-1 - ${window.Telegram?.WebApp.version}</h3>
+        <h3>V-TEST-2 | keyboard button send</h3>
         <input name="inp1" type="text" placeholder="text" />
         <input name="inp2" type="text" placeholder="text" />
         <input name="inp3" type="text" placeholder="text" />
@@ -35,14 +35,13 @@ class FormDataCeated {
   addListenerForm() {
     this.root.querySelector('form').addEventListener('submit', (event) => {
       event.preventDefault();
-      this.tg.sendData('["data"]');
 
-      // const inputs = Array.from(event.target.querySelectorAll('input'));
-      // if (inputs.every((inp) => inp.value)) {
-      //   this.senDataInBot(inputs);
-      // } else {
-      //   this.addError('Вы не все поля заполнили');
-      // }
+      const inputs = Array.from(event.target.querySelectorAll('input'));
+      if (inputs.every((inp) => inp.value)) {
+        this.senDataInBot(inputs);
+      } else {
+        this.addError('Вы не все поля заполнили');
+      }
       
     })
   }
