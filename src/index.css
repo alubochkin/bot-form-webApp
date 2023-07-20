@@ -1,6 +1,8 @@
 
 :root {
   --paddibg-elem: 10px;
+  --border-radius: 3px;
+  --border: 1px solid var(--tg-theme-text-color, #333);
 }
 
 body {
@@ -14,6 +16,8 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  outline: none;
+  border: none;
 
 }
 
@@ -34,16 +38,26 @@ label {
   gap: 10px;
 }
 
-input {
-  padding: var(--paddibg-elem);
+#editor {
+  min-height: 150px;
 }
+
+.field, button {
+  background-color: var(--tg-theme-bg-color);
+  padding: var(--paddibg-elem);
+  border-radius: var(--border-radius);
+  border: var(--border);
+}
+
 textarea {
   resize: vertical;
-  padding: var(--paddibg-elem);
 }
 
 button {
-  padding: var(--paddibg-elem);
-  background-color: var(--tg-theme-button-color);
-  color: var(--tg-theme-button-text-color);
+  background-color: var(--tg-theme-bg-color, rgb(53, 47, 103));
+  color: var(--tg-theme-text-color, white);
+}
+
+.hover {
+  display: none;
 }

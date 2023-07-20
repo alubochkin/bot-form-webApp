@@ -9,6 +9,7 @@ class FormDataCeated {
     if (this.root) {
       this.createTemplateForm();
       this.addListenerForm();
+      this.runEditor();
     } 
   }
 
@@ -17,18 +18,21 @@ class FormDataCeated {
       <form id="form">
         <label>
           Название:
-          <input required name="field-title" type="text" placeholder="Укажите название" />
+          <input class="field" required name="title" type="text" />
         </label>
 
         <label>
           Ссыдка на видео:
-          <input required name="field-link" type="text" placeholder="Укажите ссылку" />
+          <input class="field" required name="link" type="text" />
         </label>
 
         <label>
         Описание задачи:
-        <textarea rows="5" required name="field-description" placeholder="Укажите описание"></textarea>
+         <div contenteditable="true" id="editor" class="field">
+         </div>
       </label>
+
+     
 
         <p class="errors"></p>
         <button id="submit">Отправить</button>
@@ -47,21 +51,40 @@ class FormDataCeated {
     this.root.querySelector('form').addEventListener('submit', (event) => {
       event.preventDefault();
 
-      const inputs = Array.from(event.target.querySelectorAll('input'));
-      if (inputs.every((inp) => inp.value)) {
-        this.senDataInBot(inputs);
+      const fields = Array.from(event.target.querySelectorAll('.field'));
+
+      if (fields.every((f) => f.value)) {
+        this.senDataInBot(fields);
       } else {
         this.addError('Вы не все поля заполнили');
       }
       
     })
   }
-  senDataInBot(inputsArray) {
-    const inputsArrayValue = inputsArray.map((input) => input.value);
-    inputsArray.map((input) => input.value = '');
-    const data = JSON.stringify(inputsArrayValue);
 
-    this.tg.sendData(data);
+  senDataInBot(fieldsArr) {
+    try {
+      const prepaireData = {};
+
+      fieldsArr.forEach((field) => {
+        if(field.name) {
+          prepaireData[field.name] = field.value;
+          field.value = '';
+        } else {
+          prepaireData['description'] = field.innerHTML;
+          field.innerHTML = '';
+        } 
+
+      });
+
+      const data = JSON.stringify(prepaireData);
+      console.log(data, prepaireData)
+      if (data) this.tg.sendData(data);
+
+    } catch(err) {
+      console.log(err)
+    }
+
   }
 }
 
