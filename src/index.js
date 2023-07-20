@@ -32,8 +32,6 @@ class FormDataCeated {
          </div>
       </label>
 
-     
-
         <p class="errors"></p>
         <button id="submit">Отправить</button>
       </div>
@@ -53,7 +51,7 @@ class FormDataCeated {
 
       const fields = Array.from(event.target.querySelectorAll('.field'));
 
-      if (fields.every((f) => f.value)) {
+      if (fields.every((f) => f.value || f.textContent)) {
         this.senDataInBot(fields);
       } else {
         this.addError('Вы не все поля заполнили');

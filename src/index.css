@@ -3,13 +3,14 @@
   --paddibg-elem: 10px;
   --border-radius: 3px;
   --border: 1px solid var(--tg-theme-text-color, #333);
+  --color-tg: var(--tg-theme-text-color, #333)
 }
 
 body {
   font-family: sans-serif;
   overflow: hidden;
   background-color: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color);
+  color: var(--color-tg);
 }
 
 * {
@@ -47,11 +48,9 @@ label {
   padding: var(--paddibg-elem);
   border-radius: var(--border-radius);
   border: var(--border);
+  color: var(--color-tg);
 }
 
-textarea {
-  resize: vertical;
-}
 
 button {
   background-color: var(--tg-theme-bg-color, rgb(53, 47, 103));
