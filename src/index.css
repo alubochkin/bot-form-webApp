@@ -28,7 +28,17 @@ body {
   gap: 20px;
 }
 
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 input {
+  padding: var(--paddibg-elem);
+}
+textarea {
+  resize: vertical;
   padding: var(--paddibg-elem);
 }
 

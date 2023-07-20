@@ -1,26 +1,37 @@
 class FormDataCeated {
   dataForm = [];
 
-  init() {
-    this.root = document.getElementById('root');
+  init(selector) {
+    this.root = document.getElementById(selector);
     this.tg =  window.Telegram?.WebApp;
     this.tg.ready();
 
     if (this.root) {
-      this.createForm();
+      this.createTemplateForm();
       this.addListenerForm();
     } 
   }
 
-  createForm() {
+  createTemplateForm() {
     this.form = `
       <form id="form">
-        <h3>V-TEST-2 | keyboard button send</h3>
-        <input name="inp1" type="text" placeholder="text" />
-        <input name="inp2" type="text" placeholder="text" />
-        <input name="inp3" type="text" placeholder="text" />
+        <label>
+          Название:
+          <input required name="field-title" type="text" placeholder="Укажите название" />
+        </label>
+
+        <label>
+          Ссыдка на видео:
+          <input required name="field-link" type="text" placeholder="Укажите ссылку" />
+        </label>
+
+        <label>
+        Описание задачи:
+        <textarea rows="5" required name="field-description" placeholder="Укажите описание"></textarea>
+      </label>
+
         <p class="errors"></p>
-        <button id="submit">Send</button>
+        <button id="submit">Отправить</button>
       </div>
     `
     this.root.insertAdjacentHTML('beforeend', this.form);
@@ -54,6 +65,5 @@ class FormDataCeated {
   }
 }
 
-(new FormDataCeated).init()
-
+(new FormDataCeated).init('root');
 
