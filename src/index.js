@@ -9,7 +9,6 @@ class FormDataCeated {
     if (this.root) {
       this.createTemplateForm();
       this.addListenerForm();
-      this.runEditor();
     } 
   }
 
@@ -28,7 +27,7 @@ class FormDataCeated {
 
         <label>
         Описание задачи:
-         <div contenteditable="true" id="editor" class="field">
+         <div contenteditable="plaintext-only" id="editor" class="field">
          </div>
       </label>
 
