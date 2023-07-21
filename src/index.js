@@ -15,6 +15,7 @@ class FormDataCeated {
   createTemplateForm() {
     this.form = `
       <form id="form">
+        <pre>v-3</pre>
         <label>
           Название:
           <input class="field" required name="title" type="text" />
